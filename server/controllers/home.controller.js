@@ -1,9 +1,11 @@
 const Home = require('../models/home.model.js');
 
 
-// Home Controller Function
-exports.home = (_req, res) => {
-    res.send( 'Welcome to the Home!' )
+
+exports.home = (req, res) => {
+    Home.find()
+        .then(homeData => res.json(homeData))
+        .catch(error => res.status(400).json({ error }));
 };
 
 exports.insertHome = function (req, res) {
