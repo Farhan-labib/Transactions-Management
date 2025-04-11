@@ -9,9 +9,12 @@ const Authmiddleware = require('../middlewares/auth.middleware');
 
 
 //Home route
-router.post('/createprofile', ProfileController.profile),
-router.post('/login', ProfileController.login)
-router.post('/transaction', TransactionController.transaction)
+router.post('/createprofile', ProfileController.profile);
+router.post('/login', ProfileController.login);
+router.get('/check-user/:gmail', ProfileController.checkUserExists);
+router.post('/transaction', TransactionController.transaction);
+router.get('/transactions/:gmail', TransactionController.getTransactionsByGmail);
+
 
 
 module.exports = router;

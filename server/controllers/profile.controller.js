@@ -20,24 +20,38 @@ exports.login = async function (req, res) {
     }
 
     try {
-        // Find the user by email
+        
         const profile = await Profile.findOne({ gmail });
 
         if (!profile) {
             return res.status(400).json({ message: 'Invalid email or password.' });
         }
 
-        // Check if password matches
+        
         const isMatch = await bcrypt.compare(password, profile.password);
 
         if (!isMatch) {
             return res.status(400).json({ message: 'Invalid email or password.' });
         }
 
-        // Authentication success, just send a message back
-        res.status(200).json({ message: 'Login successful',   role: profile.role });
+        
+        res.status(200).json({ message: 'Login successful',   role: profile.role,  l_gmail: profile.gmail });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error, please try again later.' });
+    }
+};
+
+exports.checkUserExists = async (req, res) => {
+    const { gmail } = req.params;
+    try {
+        const user = await Profile.findOne({ gmail });
+        if (user) {
+            res.status(200).json({ exists: true });
+        } else {
+            res.status(404).json({ exists: false });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 };
