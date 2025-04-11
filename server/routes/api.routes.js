@@ -14,6 +14,10 @@ router.post('/login', ProfileController.login);
 router.get('/check-user/:gmail', ProfileController.checkUserExists);
 router.post('/transaction', TransactionController.transaction);
 router.get('/transactions/:gmail', TransactionController.getTransactionsByGmail);
+router.get('/transactions_all', TransactionController.getAllTransactions);
+router.put('/transaction-status', TransactionController.updateTransactionStatus);
+
+
 
 
 
