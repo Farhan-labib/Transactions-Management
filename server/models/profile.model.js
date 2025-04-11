@@ -11,6 +11,18 @@ const ProfileSchema = new Schema({
         type: String,
         required: true,
     },
+
+    role: {
+        type: String,
+        enum: ['admin', 'user'],
+        default: 'user',
+    },
+
+    balance: {
+        type: Number,
+        default: 0,
+    },
+
 });
 
 // hash password
@@ -25,6 +37,10 @@ ProfileSchema.pre('save', async function (next) {
         next(err);
     }
 });
+
+// Compare password
+ProfileSchema.methods.comparePassword = async function (password) {
+    return await bcrypt.compare(password, this.password);}
 
 // Model
 const profile = model('profile', ProfileSchema);

@@ -8,7 +8,8 @@ const Authmiddleware = require('../middlewares/auth.middleware');
 
 
 //Home route
-router.get('/createprofile',Authmiddleware.auth ,Controller.profile)
+router.post('/createprofile', Controller.profile),
+router.post('/login', Controller.login)
 
 
 module.exports = router;
