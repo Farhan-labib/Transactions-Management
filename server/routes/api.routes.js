@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Controller = require('../controllers/home.controller');
+const Controller = require('../controllers/profile.controller');
 const Authmiddleware = require('../middlewares/auth.middleware');
 
 
@@ -8,7 +8,7 @@ const Authmiddleware = require('../middlewares/auth.middleware');
 
 
 //Home route
-router.get('/',Authmiddleware.auth ,Controller.home)
-router.post('/homecreate',Authmiddleware.auth,Controller.insertHome); 
+router.get('/createprofile',Authmiddleware.auth ,Controller.profile)
+
 
 module.exports = router;
