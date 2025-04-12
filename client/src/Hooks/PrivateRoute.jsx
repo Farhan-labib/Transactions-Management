@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
+import API_CONFIG from '../config/api.config';
 
 const PrivateRoute = ({ children, allowedRoles }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -17,16 +18,16 @@ const PrivateRoute = ({ children, allowedRoles }) => {
             
             try {
                 // Create a test request to verify token validity
-                // You can create a dedicated endpoint for token verification if needed
                 const authAxios = axios.create({
-                    baseURL: `${process.env.REACT_APP_BACKEND_URL}`,
+                    baseURL: API_CONFIG.baseURL,
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
                 
-                // Try to access a protected route to verify token
-                await authAxios.get('/api/check-user/' + localStorage.getItem('l_gmail'));
+                const userEmail = localStorage.getItem('l_gmail');
+                // Try to access a protected route to verify token using the proper endpoint from config
+                await authAxios.get(API_CONFIG.endpoints.checkUser(userEmail));
                 setIsAuthenticated(true);
             } catch (error) {
                 console.error('Token verification failed:', error);
