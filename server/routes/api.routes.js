@@ -11,11 +11,11 @@ const Authmiddleware = require('../middlewares/auth.middleware');
 //Home route
 router.post('/createprofile', ProfileController.profile);
 router.post('/login', ProfileController.login);
-router.get('/check-user/:gmail', ProfileController.checkUserExists);
-router.post('/transaction', TransactionController.transaction);
-router.get('/transactions/:gmail', TransactionController.getTransactionsByGmail);
-router.get('/transactions_all', TransactionController.getAllTransactions);
-router.put('/transaction-status', TransactionController.updateTransactionStatus);
+router.get('/check-user/:gmail', Authmiddleware.protect , ProfileController.checkUserExists);
+router.post('/transaction', Authmiddleware.protect , TransactionController.transaction);
+router.get('/transactions/:gmail',Authmiddleware.protect ,TransactionController.getTransactionsByGmail);
+router.get('/transactions_all', Authmiddleware.protect  ,TransactionController.getAllTransactions);
+router.put('/transaction-status',Authmiddleware.protect , TransactionController.updateTransactionStatus);
 
 
 

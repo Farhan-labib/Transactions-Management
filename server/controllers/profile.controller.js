@@ -1,8 +1,12 @@
 const Profile = require('../models/profile.model.js');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = process.env;
 
 
-
+const generateToken = (profile) => {
+    return jwt.sign({ id: profile._id, role: profile.role }, JWT_SECRET, { expiresIn: '1h' });
+}
 
 
 exports.profile = function (req, res) {
@@ -36,7 +40,7 @@ exports.login = async function (req, res) {
         }
 
         
-        res.status(200).json({ message: 'Login successful',   role: profile.role,  l_gmail: profile.gmail });
+        res.status(200).json({ message: 'Login successful',   role: profile.role,  l_gmail: profile.gmail, token: generateToken(profile) });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error, please try again later.' });
