@@ -31,6 +31,7 @@ const Login = () => {
             localStorage.setItem('l_gmail', l_gmail);
     
             setMessage(message);
+            console.log(`${process.env.REACT_APP_BACKEND_URL}`);
 
             const check = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/check-user/${gmail}`, {
                 headers: { Authorization: `Bearer ${token}` },
