@@ -11,7 +11,7 @@ function Admin() {
     
     // Create axios instance with authorization header
     const authAxios = axios.create({
-        baseURL: 'http://localhost:5000',
+        baseURL: `${process.env.REACT_APP_BACKEND_URL}`,
         headers: {
             Authorization: `Bearer ${token}`
         }

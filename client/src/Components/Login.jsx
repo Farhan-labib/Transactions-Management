@@ -18,7 +18,7 @@ const Login = () => {
         setIsLoading(true);
     
         try {
-            const response = await axios.post('http://localhost:5000/api/login', {
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/login`, {
                 gmail,
                 password,
             });
@@ -32,7 +32,7 @@ const Login = () => {
     
             setMessage(message);
 
-            const check = await axios.get(`http://localhost:5000/api/check-user/${gmail}`, {
+            const check = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/check-user/${gmail}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
 

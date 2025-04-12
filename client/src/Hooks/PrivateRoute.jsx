@@ -19,7 +19,7 @@ const PrivateRoute = ({ children, allowedRoles }) => {
                 // Create a test request to verify token validity
                 // You can create a dedicated endpoint for token verification if needed
                 const authAxios = axios.create({
-                    baseURL: 'http://localhost:5000',
+                    baseURL: `${process.env.REACT_APP_BACKEND_URL}`,
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

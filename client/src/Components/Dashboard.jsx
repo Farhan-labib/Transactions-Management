@@ -18,7 +18,7 @@ const Dashboard = () => {
     
     // Create axios instance with default auth header
     const authAxios = axios.create({
-        baseURL: 'http://localhost:5000',
+        baseURL: `${process.env.REACT_APP_BACKEND_URL}`,
         headers: {
             Authorization: `Bearer ${token}`
         }

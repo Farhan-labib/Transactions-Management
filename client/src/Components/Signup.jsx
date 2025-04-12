@@ -15,7 +15,7 @@ const Signup = () => {
         setError('');
 
         try {
-            const response = await axios.post('http://localhost:5000/api/createprofile', { gmail, password });
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/createprofile`, { gmail, password });
             setMessage(response.data.message);
             setGmail('');
             setPassword('');
