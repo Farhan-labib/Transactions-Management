@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 
 
 
+
 exports.profile = function (req, res) {
     const profile = new Profile(req.body);
     profile.save()

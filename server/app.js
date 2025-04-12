@@ -3,7 +3,7 @@ const express = require('./config/express');
 const app = express.init();
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 const HOST = process.env.HOST || 'localhost';
  
 app.listen(PORT,() => {
