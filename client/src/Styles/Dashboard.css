@@ -1,0 +1,170 @@
+/* Dashboard.css */
+:root {
+    --primary-color: #2c3e50;
+    --primary-hover: #1a252f;
+    --background-color: #ffffff;
+    --border-color: #e0e0e0;
+    --text-color: #333333;
+    --text-light: #666666;
+    --success-color: #27ae60;
+    --error-color: #e74c3c;
+    --border-radius: 4px;
+    --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    --transition: all 0.2s ease;
+    --table-header: #f5f7fa;
+    --table-border: #eaeef3;
+    --table-row-hover: #f9fafb;
+  }
+  
+  .dashboard-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+  
+  .dashboard-container h1 {
+    margin: 0 0 15px 0;
+    color: var(--primary-color);
+    font-size: 28px;
+    font-weight: 600;
+  }
+  
+  .dashboard-container h2 {
+    margin: 30px 0 15px 0;
+    color: var(--primary-color);
+    font-size: 20px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+  }
+  
+  .dashboard-container p {
+    margin: 10px 0;
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .dashboard-container button {
+    padding: 10px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 10px;
+  }
+  
+  .dashboard-container button:hover {
+    background-color: var(--primary-hover);
+  }
+  
+  .transaction-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .transaction-form input {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    color: var(--text-color);
+    transition: var(--transition);
+  }
+  
+  .transaction-form input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1);
+  }
+  
+  .transaction-form button {
+    padding: 12px 20px;
+    margin-top: 0;
+  }
+  
+  .success {
+    padding: 12px 15px;
+    background-color: rgba(39, 174, 96, 0.1);
+    color: var(--success-color);
+    border-radius: var(--border-radius);
+    margin: 15px 0;
+    font-size: 14px;
+  }
+  
+  .error {
+    padding: 12px 15px;
+    background-color: rgba(231, 76, 60, 0.1);
+    color: var(--error-color);
+    border-radius: var(--border-radius);
+    margin: 15px 0;
+    font-size: 14px;
+  }
+  
+  .transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 14px;
+  }
+  
+  .transaction-table th {
+    background-color: var(--table-header);
+    color: var(--primary-color);
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 2px solid var(--table-border);
+  }
+  
+  .transaction-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--table-border);
+    color: var(--text-color);
+  }
+  
+  .transaction-table tbody tr:hover {
+    background-color: var(--table-row-hover);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .dashboard-container {
+      padding: 20px;
+      margin: 20px;
+    }
+    
+    .transaction-form {
+      flex-direction: column;
+    }
+    
+    .transaction-form input {
+      width: 100%;
+    }
+    
+    .transaction-table {
+      display: block;
+      overflow-x: auto;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .dashboard-container h1 {
+      font-size: 24px;
+    }
+    
+    .dashboard-container h2 {
+      font-size: 18px;
+    }
+  }

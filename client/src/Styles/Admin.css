@@ -1,0 +1,173 @@
+/* Admin.css */
+
+:root {
+    --primary-color: #2c3e50;
+    --primary-hover: #1a252f;
+    --background-color: #ffffff;
+    --border-color: #e0e0e0;
+    --text-color: #333333;
+    --text-light: #666666;
+    --success-color: #27ae60;
+    --error-color: #e74c3c;
+    --warning-color: #f39c12;
+    --border-radius: 4px;
+    --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    --transition: all 0.2s ease;
+    --table-header: #f5f7fa;
+    --table-border: #eaeef3;
+    --table-row-hover: #f9fafb;
+    --approved-color: #27ae60;
+    --rejected-color: #e74c3c;
+    --pending-color: #f39c12;
+  }
+  
+  .dashboard-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+  }
+  
+  .dashboard-card {
+    background-color: var(--background-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 30px;
+    padding: 25px;
+  }
+  
+  .dashboard-heading {
+    color: var(--primary-color);
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  
+  .transaction-table th {
+    background-color: var(--table-header);
+    color: var(--primary-color);
+    font-weight: 600;
+    text-align: left;
+    padding: 12px 15px;
+    border-bottom: 2px solid var(--table-border);
+  }
+  
+  .transaction-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--table-border);
+    color: var(--text-color);
+    vertical-align: middle;
+  }
+  
+  .transaction-table tbody tr:hover {
+    background-color: var(--table-row-hover);
+  }
+  
+  /* Status-specific styling */
+  .transaction-table td:first-child:contains("Approved") {
+    color: var(--approved-color);
+    font-weight: 500;
+  }
+  
+  .transaction-table td:first-child:contains("Rejected") {
+    color: var(--rejected-color);
+    font-weight: 500;
+  }
+  
+  .transaction-table td:first-child:contains("Pending") {
+    color: var(--pending-color);
+    font-weight: 500;
+  }
+  
+  .action-btns {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .action-btns button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .action-btns button:first-child {
+    background-color: var(--success-color);
+    color: white;
+  }
+  
+  .action-btns button:first-child:hover {
+    background-color: #219653;
+  }
+  
+  .action-btns button:last-child {
+    background-color: var(--error-color);
+    color: white;
+  }
+  
+  .action-btns button:last-child:hover {
+    background-color: #c0392b;
+  }
+  
+  /* Utility class for margin right */
+  .mr-2 {
+    margin-right: 8px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .dashboard-container {
+      padding: 15px;
+      margin: 20px;
+    }
+    
+    .dashboard-card {
+      padding: 20px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .transaction-table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    
+    .transaction-table th, 
+    .transaction-table td {
+      padding: 10px 12px;
+    }
+    
+    .action-btns {
+      flex-direction: column;
+      gap: 5px;
+    }
+    
+    .action-btns button {
+      width: 100%;
+    }
+    
+    .mr-2 {
+      margin-right: 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .dashboard-heading {
+      font-size: 18px;
+    }
+    
+    .dashboard-card {
+      padding: 15px;
+    }
+  }
