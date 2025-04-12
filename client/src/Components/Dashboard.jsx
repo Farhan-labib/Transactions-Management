@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import '../Styles/Dashboard.css';
+import API_CONFIG from '../config/api.config';
 
 const Dashboard = () => {
     const [transactions, setTransactions] = useState([]);
@@ -18,7 +19,7 @@ const Dashboard = () => {
     
     // Create axios instance with default auth header
     const authAxios = axios.create({
-        baseURL: `${process.env.REACT_APP_BACKEND_URL}`,
+        baseURL: API_CONFIG.baseURL,
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -26,7 +27,7 @@ const Dashboard = () => {
 
     const fetchTransactions = useCallback(async () => {
         try {
-            const response = await authAxios.get(`/api/transactions/${gmail}`);
+            const response = await authAxios.get(API_CONFIG.endpoints.getTransactions(gmail));
             setTransactions(response.data.transactions);
             setBalance(response.data.balance);
         } catch (err) {
@@ -73,14 +74,14 @@ const Dashboard = () => {
         }
     
         try {
-            const res = await authAxios.get(`/api/check-user/${receiver}`);
+            const res = await authAxios.get(API_CONFIG.endpoints.checkUser(receiver));
             if (!res.data.exists) {
                 setError('Receiver email not found');
                 return;
             }
     
           
-            await authAxios.post('/api/transaction', {
+            await authAxios.post(API_CONFIG.endpoints.transaction, {
                 sender: gmail,
                 receiver,
                 amount,

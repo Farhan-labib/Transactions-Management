@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../Styles/Admin.css';
+import API_CONFIG from '../config/api.config';
 
 function Admin() {
     const [transactions, setTransactions] = useState([]);
@@ -11,7 +12,7 @@ function Admin() {
     
     // Create axios instance with authorization header
     const authAxios = axios.create({
-        baseURL: `${process.env.REACT_APP_BACKEND_URL}`,
+        baseURL: API_CONFIG.baseURL,
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -19,7 +20,7 @@ function Admin() {
 
     const fetchTransactions = async () => {
         try {
-            const res = await authAxios.get('/api/transactions_all');
+            const res = await authAxios.get(API_CONFIG.endpoints.getAllTransactions);
             setTransactions(res.data);
             setError('');
         } catch (err) {
@@ -35,7 +36,7 @@ function Admin() {
 
     const updateStatus = async (id, status) => {
         try {
-            await authAxios.put('/api/transaction-status', {
+            await authAxios.put(API_CONFIG.endpoints.updateTransactionStatus, {
                 transactionId: id,
                 status,
             });

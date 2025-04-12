@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, Link  } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import '../Styles/Login.css';
+import API_CONFIG from '../config/api.config';
 
 const Login = () => {
     const [gmail, setGmail] = useState('');
@@ -18,32 +19,26 @@ const Login = () => {
         setIsLoading(true);
     
         try {
-            console.log(`${process.env.REACT_APP_BACKEND_URL}`);
-            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/login`, {
-                gmail,
-                password,
-            });
+            const response = await axios.post(
+                `${API_CONFIG.baseURL}${API_CONFIG.endpoints.login}`, 
+                { gmail, password }
+            );
     
-            const { message, role, l_gmail, token } = response.data;
+            const { message, role, l_gmail, token, balance } = response.data;
     
             // Store user data in localStorage including JWT token
             localStorage.setItem('token', token);
             localStorage.setItem('role', role);
             localStorage.setItem('l_gmail', l_gmail);
-    
+                
             setMessage(message);
-
-            const check = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/check-user/${gmail}`, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
-
-            if (check.status === 200) {
     
+            // Redirect based on role
             if (role === 'admin') {
                 navigate('/admin');
             } else if (role === 'user') {
                 navigate('/dashboard');
-            }}
+            }
         } catch (err) {
             setError(err.response?.data?.message || 'Login failed! Please check your credentials.');
             console.error('Login error:', err);
