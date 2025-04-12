@@ -9,7 +9,7 @@ module.exports.init = () => {
 
     // Connect to MongoDB
     mongoose.Promise = global.Promise;
-    const databaseURI = process.env.DB_URI || config.db.uri 
+    const databaseURI = process.env.DB_URI
     mongoose.connect(databaseURI)
         .then(() => console.log('MongoDB connected'))
         .catch(err => console.error('MongoDB connection error:', err));
